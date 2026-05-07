@@ -1,9 +1,5 @@
 # Cafetería Tesla ☕📊
 
-Sistema administrativo desarrollado para digitalizar y automatizar el control de consumos escolares dentro de una cafetería estudiantil.
-
----
-
 # Overview
 
 This project was developed to solve a real operational problem inside a private school environment.  
