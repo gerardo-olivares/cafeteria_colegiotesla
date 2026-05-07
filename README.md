@@ -226,14 +226,3 @@ FastAPI automatically generates interactive API documentation:
 
 **Gerardo Olivares**  
 Software Engineering Student  
-
-Interested in:
-- AI Engineering
-- Data Science
-- Backend Development
-- Applied Machine Learning
-
-LinkedIn: *(your LinkedIn here)*  
-GitHub: *(your GitHub here)*
-
-```
