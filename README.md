@@ -1,86 +1,243 @@
-Cafeteria AI Assistant
+# Cafetería Tesla ☕📊
 
-Backend system for managing sales in a school cafeteria. The system stores students and products in a database, registers purchases, and generates Excel reports automatically. It is designed to evolve into a Telegram bot powered by AI that can register sales using natural language.
+Sistema administrativo desarrollado para digitalizar y automatizar el control de consumos escolares dentro de una cafetería estudiantil.
 
-Problem
-Many school cafeterias track sales manually or with unstructured spreadsheets. This often causes inaccurate records, difficulty generating reports, lack of traceability by student or group, and slow purchase registration. This project provides a structured backend system that records purchases and generates automated reports.
+---
 
-Features
-•	Product catalog management
-•	Student import from Excel
-•	Purchase registration
-•	Automatic price calculation
-•	Sales queries
-•	Excel report generation
-•	Automatic API documentation with Swagger
+# Overview
 
-Tech Stack
-•	Python
-•	FastAPI
-•	SQLAlchemy
-•	SQLite
-•	Pandas
-•	OpenPyXL
+This project was developed to solve a real operational problem inside a private school environment.  
+Before the system existed, teachers manually tracked student meals and payments using paper notes and spreadsheets, which caused delays, inconsistencies, and poor visibility of outstanding balances.
 
-Architecture
-User / Telegram Bot → FastAPI API → SQLAlchemy ORM → SQLite Database → Excel Reports (Pandas)
+The goal of this project was to design and deploy a complete web-based system that centralized:
 
-Project Structure
-cafeteria-ai
-│
-├── app
-│   ├── main.py
-│   ├── database.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── seed.py
-│   └── import_alumnos.py
-│
-├── cafeteria.db
-├── alumnos.xlsx
-├── requirements.txt
-├── README.md
-└── .gitignore
+- Student meal registration
+- Payment tracking
+- Debt calculation
+- Account statements
+- Excel reporting
+- Administrative management
 
-Database Schema
-Students
-Fields: id, alumno, grupo
-Products
-Fields: id, nombre, precio
-Sales
-Fields: id, alumno_id, producto_id, cantidad, total, fecha
+The system is currently designed for real-world school operations and focuses on simplicity, reliability, and fast administrative workflows.
 
-API Endpoints
-•	GET /  → API status
-•	GET /alumnos → list students
-•	GET /productos → list products
-•	POST /ventas → register a sale
-•	GET /ventas → list sales
-•	GET /ventas/excel → generate Excel report
+---
 
-How to Run the Project
+# Problem
+
+The school needed a way to:
+
+- Track which students consumed breakfast/lunch
+- Monitor pending balances
+- Register payments efficiently
+- Generate reports for administration
+- Reduce manual work and spreadsheet errors
+
+The existing workflow was fragmented and time-consuming.
+
+---
+
+# Solution
+
+I built a full-stack administrative platform composed of:
+
+- A REST API backend using Python and FastAPI
+- A Streamlit-based admin interface
+- A PostgreSQL database for persistent storage
+- Excel report generation for operational use
+
+The system allows staff members to:
+
+✅ Register student purchases  
+✅ Register payments/credits  
+✅ View account balances  
+✅ Generate account statements  
+✅ Export operational reports  
+
+---
+
+# Tech Stack
+
+## Backend
+- Python
+- FastAPI
+- REST APIs
+
+## Frontend / Admin Panel
+- Streamlit
+
+## Database
+- PostgreSQL
+- SQLite (initial prototype)
+
+## Deployment
+- Render
+
+## Data & Reporting
+- Pandas
+- Excel report generation
+
+---
+
+# Features
+
+## Student Management
+- Student registration
+- Student search
+- Multiple student selection
+
+## Sales Management
+- Meal/product registration
+- Quantity handling
+- Automatic balance updates
+
+## Payment System
+- Payment registration
+- Optional payment concepts/notes
+- Debt tracking
+
+## Reporting
+- Account statements
+- Downloadable Excel reports
+- Administrative summaries
+
+---
+
+# System Architecture
+
+```text
+Teachers/Admin
+       ↓
+Streamlit Admin Panel
+       ↓
+FastAPI REST API
+       ↓
+PostgreSQL Database
+```
+
+---
+
+# Why This Project Matters
+
+This was not built as a tutorial or academic-only project.
+
+It was created to solve an actual operational problem inside a school environment with real users and real administrative workflows.
+
+Through this project I learned:
+
+- Backend API development
+- Database design
+- Deployment to cloud infrastructure
+- Real-world software architecture
+- Data handling and reporting
+- Business-oriented problem solving
+- Translating operational needs into software solutions
+
+The experience also helped me understand the difference between building small coding exercises and developing software intended for continuous real-world use.
+
+---
+
+# Challenges
+
+Some of the technical and operational challenges included:
+
+- Designing a clean workflow for non-technical users
+- Migrating from SQLite to PostgreSQL
+- Handling report generation
+- Managing environment variables and deployment configuration
+- Structuring scalable API endpoints
+- Ensuring simple administrative usability
+
+---
+
+# Future Improvements
+
+Planned improvements include:
+
+- Authentication system with roles
+- Purchase confirmation workflows
+- Debtors dashboard
+- School cycle reset system
+- Bulk Excel uploads
+- Analytics dashboard
+- AI-assisted administrative insights
+
+---
+
+# What I Would Improve Today
+
+If rebuilding the project today, I would likely:
+
+- Containerize services using Docker
+- Add automated testing
+- Improve API documentation
+- Implement CI/CD pipelines
+- Add monitoring/logging
+- Separate frontend and backend into independent services
+
+---
+
+# Installation
+
+```bash
+git clone https://github.com/yourusername/cafeteria-tesla.git
+cd cafeteria-tesla
+```
+
 Install dependencies:
-py -m pip install -r requirements.txt
-Load initial products:
-py -m app.seed
-Import students from Excel:
-py -m app.import_alumnos
-Start the API server:
-py -m uvicorn app.main:app --reload
-Open API documentation in browser:
-http://127.0.0.1:8000/docs
 
-Future Improvements
-•	Telegram bot integration
-•	AI-powered natural language purchase input
-•	Automatic disambiguation when students share the same name
-•	Filtered reports by group
-•	Filtered reports by date
-•	Web dashboard for administrators
+```bash
+pip install -r requirements.txt
+```
 
-Author
-Gerardo Olivares
-Software Engineering Student.
+Run backend:
 
-License
-MIT License
+```bash
+uvicorn main:app --reload
+```
+
+Run Streamlit frontend:
+
+```bash
+streamlit run app.py
+```
+
+---
+
+# Environment Variables
+
+Create a `.env` file with:
+
+```env
+DATABASE_URL=your_database_url
+STREAMLIT_USERNAME=your_username
+STREAMLIT_PASSWORD=your_password
+API_URL=your_api_url
+```
+
+---
+
+# API Documentation
+
+FastAPI automatically generates interactive API documentation:
+
+```bash
+/docs
+```
+
+---
+
+# Author
+
+**Gerardo Olivares**  
+Software Engineering Student  
+
+Interested in:
+- AI Engineering
+- Data Science
+- Backend Development
+- Applied Machine Learning
+
+LinkedIn: *(your LinkedIn here)*  
+GitHub: *(your GitHub here)*
+
+```
